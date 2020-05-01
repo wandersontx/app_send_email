@@ -65,7 +65,7 @@ try {
 
     //Recipients
     $mail->setFrom('development89test@gamil.com', 'Wanderson Teixeira');
-    $mail->addAddress('wandersonh89@gmail.com', 'Joe User');     // Add a recipient
+    $mail->addAddress($msg->__get('para'));     // Add a recipient
    // $mail->addAddress('ellen@example.com');               // Name is optional
     //$mail->addReplyTo('info@example.com', 'Information'); e-mail padrão para resposta
     //$mail->addCC('cc@example.com');  destinatarios em copia
@@ -77,12 +77,12 @@ try {
 
     // Content
     $mail->isHTML(true);                                  // Set email format to HTML
-    $mail->Subject = 'oi';//$assunto;
-    $mail->Body    = 'corpo da mensagem de <strong>email</strong>';//$mensagem;
+    $mail->Subject = $msg->__get('assunto');
+    $mail->Body    = $msg->__get('mensagem');
     //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients'; -- para emails que não suportão html
 
     $mail->send();
-    echo 'Message has been sent';
+    echo '<h3 style="color:green;">Email enviado com sucesso!</h3>';
 } catch (Exception $e) {
     echo "Não foi  possivel enviar este e-mail! Por favor tente novamente mais tarde";
     echo '<br>Detalhes do erro:<br>'.$e->errorMessage();
